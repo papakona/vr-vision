@@ -43,7 +43,7 @@
 <div id="controls-info">
   <h3>🔍 Vision Simulator (Mobile/VR)</h3>
   <p>Look at buttons for 1 second to select</p>
-  <p>Double-tap screen to reset to normal vision</p>
+  <p>Double-tap screen OR use green RESET button (bottom-left in VR)</p>
 </div>
 
 <a-scene background="color: #ECECEC" vr-mode-ui="enabled: true">
@@ -87,46 +87,55 @@
   <!-- CLASSROOM MODEL -->
   <a-entity id="classroom" gltf-model="classroom.glb" position="0 -1.2 0" scale="0.5 0.5 0.5"></a-entity>
 
+  <!-- FLOATING RESET BUTTON - Ακολουθεί την κάμερα, πάντα προσβάσιμο σε VR -->
+  <a-entity id="floatingReset" position="0 0 0">
+    <a-plane class="clickable" id="vrResetButton" position="-0.8 -0.5 -1.5" width="0.4" height="0.2" color="#4CAF50" 
+      text="value: RESET; align: center; color: #FFFFFF; width: 1.2" 
+      rotation="0 0 0"
+      material="opacity: 0.9">
+    </a-plane>
+  </a-entity>
+
   <!-- MAIN MENU - ΤΑ 3 ΣΕ ΜΙΑ ΟΡΙΖΟΝΤΙΑ ΓΡΑΜΜΗ, ΠΑΝΩ ΚΑΙ ΑΡΙΣΤΕΡΑ, ΑΚΟΥΜΠΑΝΕ -->
   <a-plane id="animalMenu" class="clickable" position="0 3.5 -3.5" width="2.4" height="1.2" color="#CE93D8" 
-    text="value: ANIMAL\nVISION; align: center; color: #000000; width: 4.5; wrapCount: 15">
+    text="value: ANIMAL\nVISION; align: center; color: #000000; width: 5.5; wrapCount: 15">
   </a-plane>
   
   <a-plane id="disabilityMenu" class="clickable" position="2.4 3.5 -3.5" width="2.4" height="1.2" color="#FFC107" 
-    text="value: VISION\nDISABILITIES; align: center; color: #000000; width: 4.5; wrapCount: 15">
+    text="value: VISION\nDISABILITIES; align: center; color: #000000; width: 5.5; wrapCount: 15">
   </a-plane>
   
   <a-plane id="resetButton" class="clickable" position="4.8 3.5 -3.5" width="2.4" height="1.2" color="#A5D6A7" 
-    text="value: RESET\nNORMAL; align: center; color: #000000; width: 4.5; wrapCount: 15">
+    text="value: RESET\nNORMAL; align: center; color: #000000; width: 5.5; wrapCount: 15">
   </a-plane>
 
   <!-- ANIMAL DROPDOWN -->
   <a-entity id="animalOptions" visible="false">
     <a-plane class="clickable animal-option" position="0 2.6 -2.5" width="2.3" height="0.8" color="#FFFFFF" 
-      text="value: COW; align: center; color: #000000; width: 4.5" data-vision="Cow">
+      text="value: COW; align: center; color: #000000; width: 3.5" data-vision="Cow">
     </a-plane>
     
     <a-plane class="clickable animal-option" position="0 1.7 -2.5" width="2.3" height="0.8" color="#FFFFFF" 
-      text="value: HORSE; align: center; color: #000000; width: 4.5" data-vision="Horse">
+      text="value: HORSE; align: center; color: #000000; width: 3.5" data-vision="Horse">
     </a-plane>
     
     <a-plane class="clickable animal-option" position="0 0.8 -2.5" width="2.3" height="0.8" color="#FFFFFF" 
-      text="value: FISH; align: center; color: #000000; width: 4.5" data-vision="Sparrow">
+      text="value: FISH; align: center; color: #000000; width: 3.5" data-vision="Sparrow">
     </a-plane>
   </a-entity>
 
   <!-- DISABILITY DROPDOWN -->
   <a-entity id="disabilityOptions" visible="false">
     <a-plane class="clickable disability-option" position="2.4 2.6 -2.5" width="2.3" height="0.8" color="#FFFFFF" 
-      text="value: PROTANOPIA; align: center; color: #000000; width: 4.5" data-vision="Protanopia">
+      text="value: PROTANOPIA; align: center; color: #000000; width: 3.5" data-vision="Protanopia">
     </a-plane>
     
     <a-plane class="clickable disability-option" position="2.4 1.7 -2.5" width="2.3" height="0.8" color="#FFFFFF" 
-      text="value: MACULAR\nDEGENERATION; align: center; color: #000000; width: 4.5; wrapCount: 15" data-vision="Macular">
+      text="value: MACULAR\nDEGEN.; align: center; color: #000000; width: 5.5; wrapCount: 15" data-vision="Macular">
     </a-plane>
     
     <a-plane class="clickable disability-option" position="2.4 0.8 -2.5" width="2.3" height="0.8" color="#FFFFFF" 
-      text="value: TUNNEL VISION; align: center; color: #000000; width: 4.5" data-vision="Tunnel">
+      text="value: TUNNEL VISION; align: center; color: #000000; width: 3.5" data-vision="Tunnel">
     </a-plane>
   </a-entity>
 
@@ -149,7 +158,29 @@ document.addEventListener('DOMContentLoaded', function() {
     setupMenuHandlers();
     hideInfoOnVREnter();
     setupVolumeButtonReset();
+    attachFloatingResetToCamera();
   });
+
+  // Attach floating reset button to camera so it follows the view
+  function attachFloatingResetToCamera() {
+    const floatingReset = document.querySelector('#floatingReset');
+    const camera = document.querySelector('#mainCamera');
+    
+    if (floatingReset && camera) {
+      // Attach to camera
+      camera.appendChild(floatingReset);
+      console.log('✓ Floating reset button attached to camera');
+    }
+    
+    // Add click handler for VR reset button
+    const vrResetBtn = document.querySelector('#vrResetButton');
+    if (vrResetBtn) {
+      vrResetBtn.addEventListener('click', function() {
+        resetVision();
+        console.log('✓ Reset via floating VR button');
+      });
+    }
+  }
 
   // VOLUME BUTTON RESET ΓΙΑ MOBILE + SCREEN TAP
   function setupVolumeButtonReset() {

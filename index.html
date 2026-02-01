@@ -36,6 +36,32 @@
       margin: 3px 0;
     }
     
+    /* Reset button overlay για mobile */
+    #mobile-reset-btn {
+      position: fixed;
+      bottom: 80px;
+      right: 20px;
+      width: 60px;
+      height: 60px;
+      background: #4CAF50;
+      border: 3px solid white;
+      border-radius: 50%;
+      color: white;
+      font-size: 24px;
+      font-weight: bold;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 2000;
+      cursor: pointer;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+      font-family: Arial, sans-serif;
+    }
+    #mobile-reset-btn:active {
+      background: #45a049;
+      transform: scale(0.95);
+    }
+    
     /* Hide info when in VR mode */
     .a-enter-vr .a-orientation-modal {
       display: none;
@@ -48,15 +74,18 @@
 <div id="controls-info">
   <h3>🔍 Vision Simulator (Mobile/VR)</h3>
   <p>Look at buttons for 1 second to select</p>
-  <p>Enter VR mode for Cardboard experience</p>
+  <p>Green button (→) resets to normal vision</p>
 </div>
+
+<!-- Floating reset button για mobile -->
+<button id="mobile-reset-btn" title="Reset to Normal Vision">R</button>
 
 <a-scene background="color: #ECECEC" vr-mode-ui="enabled: true">
 
   <!-- CAMERA + CURSOR (VR-optimized) -->
   <a-entity id="cameraRig" position="0 0.6 6">
     <a-camera id="mainCamera" look-controls>
-      <!-- Gaze cursor για VR - μεγαλύτερο fuse timeout για καλύτερο control -->
+      <!-- Gaze cursor για VR -->
       <a-cursor
         id="gazeCursor"
         color="#4CAF50"
@@ -66,7 +95,6 @@
         raycaster="objects: .clickable; far: 20"
         geometry="primitive: ring; radiusInner: 0.015; radiusOuter: 0.025"
         material="shader: flat; opacity: 0.9">
-        <!-- Animation για visual feedback -->
         <a-animation
           begin="fusing"
           easing="ease-in"
@@ -93,47 +121,46 @@
   <!-- CLASSROOM MODEL -->
   <a-entity id="classroom" gltf-model="classroom.glb" position="0 -1.2 0" scale="0.5 0.5 0.5"></a-entity>
 
-  <!-- MAIN MENU - ΔΙΟΡΘΩΜΕΝΕΣ ΘΕΣΕΙΣ (πιο κοντά και πιο χαμηλά) -->
-  <a-plane id="animalMenu" class="clickable" position="-1.2 1.6 -3" width="2.2" height="1" color="#CE93D8" 
-    text="value: ANIMAL\nVISION; align: center; color: #000000; width: 4.5; wrapCount: 15">
+  <!-- MAIN MENU - ΣΕ ΜΙΑ ΓΡΑΜΜΗ, ΠΙΟ ΠΑΝΩ ΚΑΙ ΔΕΞΙΑ -->
+  <a-plane id="animalMenu" class="clickable" position="0 2.2 -3" width="2" height="0.8" color="#CE93D8" 
+    text="value: ANIMAL\nVISION; align: center; color: #000000; width: 4; wrapCount: 15">
   </a-plane>
   
-  <a-plane id="disabilityMenu" class="clickable" position="1.2 1.6 -3" width="2.2" height="1" color="#FFC107" 
-    text="value: VISION\nDISABILITIES; align: center; color: #000000; width: 4.5; wrapCount: 15">
+  <a-plane id="disabilityMenu" class="clickable" position="2.3 2.2 -3" width="2" height="0.8" color="#FFC107" 
+    text="value: VISION\nDISABILITIES; align: center; color: #000000; width: 4; wrapCount: 15">
   </a-plane>
   
-  <!-- RESET BUTTON - ΠΙΟ ΑΡΙΣΤΕΡΑ ΓΙΑ ΝΑ ΜΗΝ ΚΑΛΥΠΤΕΤΑΙ ΑΠΟ HORSE BLIND SPOT -->
-  <a-plane id="resetButton" class="clickable" position="-0.6 0.5 -3" width="2.2" height="1" color="#A5D6A7" 
-    text="value: RESET\nNORMAL; align: center; color: #000000; width: 4.5; wrapCount: 15">
+  <a-plane id="resetButton" class="clickable" position="4.6 2.2 -3" width="2" height="0.8" color="#A5D6A7" 
+    text="value: RESET\nNORMAL; align: center; color: #000000; width: 4; wrapCount: 15">
   </a-plane>
 
-  <!-- ANIMAL DROPDOWN - ΔΙΟΡΘΩΜΕΝΕΣ ΘΕΣΕΙΣ -->
+  <!-- ANIMAL DROPDOWN - ΠΙΟ ΚΟΝΤΑ ΣΤΗΝ ΚΑΜΕΡΑ ΓΙΑ ΝΑ ΜΗΝ "ΜΠΑΙΝΟΥΝ" ΣΤΟ ΠΑΤΩΜΑ -->
   <a-entity id="animalOptions" visible="false">
-    <a-plane class="clickable animal-option" position="-1.2 0.5 -2.8" width="2" height="0.8" color="#FFFFFF" 
-      text="value: COW; align: center; color: #000000; width: 4.5" data-vision="Cow">
+    <a-plane class="clickable animal-option" position="0 1.3 -2.5" width="1.9" height="0.7" color="#FFFFFF" 
+      text="value: COW; align: center; color: #000000; width: 4" data-vision="Cow">
     </a-plane>
     
-    <a-plane class="clickable animal-option" position="-1.2 -0.4 -2.8" width="2" height="0.8" color="#FFFFFF" 
-      text="value: HORSE; align: center; color: #000000; width: 4.5" data-vision="Horse">
+    <a-plane class="clickable animal-option" position="0 0.5 -2.5" width="1.9" height="0.7" color="#FFFFFF" 
+      text="value: HORSE; align: center; color: #000000; width: 4" data-vision="Horse">
     </a-plane>
     
-    <a-plane class="clickable animal-option" position="-1.2 -1.3 -2.8" width="2" height="0.8" color="#FFFFFF" 
-      text="value: FISH; align: center; color: #000000; width: 4.5" data-vision="Sparrow">
+    <a-plane class="clickable animal-option" position="0 -0.3 -2.5" width="1.9" height="0.7" color="#FFFFFF" 
+      text="value: FISH; align: center; color: #000000; width: 4" data-vision="Sparrow">
     </a-plane>
   </a-entity>
 
-  <!-- DISABILITY DROPDOWN - ΔΙΟΡΘΩΜΕΝΕΣ ΘΕΣΕΙΣ -->
+  <!-- DISABILITY DROPDOWN - ΠΙΟ ΚΟΝΤΑ ΣΤΗΝ ΚΑΜΕΡΑ -->
   <a-entity id="disabilityOptions" visible="false">
-    <a-plane class="clickable disability-option" position="1.2 0.5 -2.8" width="2" height="0.8" color="#FFFFFF" 
-      text="value: PROTANOPIA; align: center; color: #000000; width: 4.5" data-vision="Protanopia">
+    <a-plane class="clickable disability-option" position="2.3 1.3 -2.5" width="1.9" height="0.7" color="#FFFFFF" 
+      text="value: PROTANOPIA; align: center; color: #000000; width: 4" data-vision="Protanopia">
     </a-plane>
     
-    <a-plane class="clickable disability-option" position="1.2 -0.4 -2.8" width="2" height="0.8" color="#FFFFFF" 
-      text="value: MACULAR\nDEGENERATION; align: center; color: #000000; width: 4.5; wrapCount: 15" data-vision="Macular">
+    <a-plane class="clickable disability-option" position="2.3 0.5 -2.5" width="1.9" height="0.7" color="#FFFFFF" 
+      text="value: MACULAR\nDEGENERATION; align: center; color: #000000; width: 4; wrapCount: 15" data-vision="Macular">
     </a-plane>
     
-    <a-plane class="clickable disability-option" position="1.2 -1.3 -2.8" width="2" height="0.8" color="#FFFFFF" 
-      text="value: TUNNEL VISION; align: center; color: #000000; width: 4.5" data-vision="Tunnel">
+    <a-plane class="clickable disability-option" position="2.3 -0.3 -2.5" width="1.9" height="0.7" color="#FFFFFF" 
+      text="value: TUNNEL VISION; align: center; color: #000000; width: 4" data-vision="Tunnel">
     </a-plane>
   </a-entity>
 
@@ -156,16 +183,29 @@ document.addEventListener('DOMContentLoaded', function() {
     originalCameraFOV = camera.getAttribute('camera').fov || 80;
     setupMenuHandlers();
     hideInfoOnVREnter();
+    setupMobileResetButton();
   });
 
-  // Κρύβουμε το info panel όταν μπαίνουμε σε VR mode
+  // Setup mobile reset button
+  function setupMobileResetButton() {
+    const resetBtn = document.getElementById('mobile-reset-btn');
+    resetBtn.addEventListener('click', function(e) {
+      e.preventDefault();
+      resetVision();
+      console.log('Reset triggered by mobile button');
+    });
+  }
+
+  // Κρύβουμε το info panel και το mobile button όταν μπαίνουμε σε VR mode
   function hideInfoOnVREnter() {
     const sceneEl = document.querySelector('a-scene');
     sceneEl.addEventListener('enter-vr', function() {
       document.getElementById('controls-info').style.display = 'none';
+      document.getElementById('mobile-reset-btn').style.display = 'none';
     });
     sceneEl.addEventListener('exit-vr', function() {
       document.getElementById('controls-info').style.display = 'block';
+      document.getElementById('mobile-reset-btn').style.display = 'flex';
     });
   }
 
@@ -219,11 +259,34 @@ document.addEventListener('DOMContentLoaded', function() {
   // VISION FUNCTIONS
   function applyCowVision() {
     if (currentVisionActive === 'Cow') return;
-    resetVision(); currentVisionActive='Cow';
-    if (!originalMaterials.length) { setTimeout(applyCowVision,1000); return; }
-    const camera=document.querySelector('#mainCamera'); camera.setAttribute('camera','fov',55);
-    originalMaterials.forEach(item=>{ if(item.color){ const c=item.color; const lum=c.r*0.299+c.g*0.587+c.b*0.114; item.mesh.material.color.copy(new THREE.Color(lum*0.85+0.15, lum*0.8+0.2, lum*0.3)); } });
-    console.log('✓ Cow vision applied');
+    resetVision(); 
+    currentVisionActive='Cow';
+    
+    if (!originalMaterials.length) { 
+      setTimeout(applyCowVision, 1000); 
+      return; 
+    }
+    
+    // ΠΙΟΕΝΤΟΝΟ FOV ΚΑΙ ΚΙΤΡΙΝΗ ΑΠΟΧΡΩΣΗ
+    const camera = document.querySelector('#mainCamera'); 
+    camera.setAttribute('camera', 'fov', 50); // Πιο στενό FOV για περισσότερο zoom
+    
+    originalMaterials.forEach(item => { 
+      if (item.color) { 
+        const c = item.color; 
+        const lum = c.r * 0.299 + c.g * 0.587 + c.b * 0.114;
+        
+        // ΠΟΛΥ ΠΙΟ ΕΝΤΟΝΑ ΚΙΤΡΙΝΑ ΧΡΩΜΑΤΑ
+        const yellowR = lum * 0.7 + 0.3;  // Περισσότερο κόκκινο
+        const yellowG = lum * 0.65 + 0.35; // Περισσότερο πράσινο
+        const yellowB = lum * 0.15;        // Πολύ λίγο μπλε
+        
+        item.mesh.material.color.setRGB(yellowR, yellowG, yellowB);
+        item.mesh.material.needsUpdate = true;
+      } 
+    });
+    
+    console.log('✓ Cow vision applied (enhanced)');
   }
 
   function applyHorseVision() {

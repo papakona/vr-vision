@@ -43,7 +43,7 @@
 <div id="controls-info">
   <h3>🔍 Vision Simulator (Mobile/VR)</h3>
   <p>Look at buttons for 1 second to select</p>
-  <p>Press Volume Up/Down to reset to normal vision</p>
+  <p>Double-tap screen to reset to normal vision</p>
 </div>
 
 <a-scene background="color: #ECECEC" vr-mode-ui="enabled: true">
@@ -87,46 +87,46 @@
   <!-- CLASSROOM MODEL -->
   <a-entity id="classroom" gltf-model="classroom.glb" position="0 -1.2 0" scale="0.5 0.5 0.5"></a-entity>
 
-  <!-- MAIN MENU - ΤΑ 3 ΣΕ ΜΙΑ ΟΡΙΖΟΝΤΙΑ ΓΡΑΜΜΗ, ΠΑΝΩ ΚΑΙ ΔΕΞΙΑ -->
-  <a-plane id="animalMenu" class="clickable" position="1.5 2.8 -3.5" width="1.8" height="0.7" color="#CE93D8" 
-    text="value: ANIMAL\nVISION; align: center; color: #000000; width: 3.8; wrapCount: 15">
+  <!-- MAIN MENU - ΤΑ 3 ΣΕ ΜΙΑ ΟΡΙΖΟΝΤΙΑ ΓΡΑΜΜΗ, ΠΑΝΩ ΚΑΙ ΑΡΙΣΤΕΡΑ, ΑΚΟΥΜΠΑΝΕ -->
+  <a-plane id="animalMenu" class="clickable" position="0 3.5 -3.5" width="2.4" height="1.2" color="#CE93D8" 
+    text="value: ANIMAL\nVISION; align: center; color: #000000; width: 4.5; wrapCount: 15">
   </a-plane>
   
-  <a-plane id="disabilityMenu" class="clickable" position="3.6 2.8 -3.5" width="1.8" height="0.7" color="#FFC107" 
-    text="value: VISION\nDISABILITIES; align: center; color: #000000; width: 3.8; wrapCount: 15">
+  <a-plane id="disabilityMenu" class="clickable" position="2.4 3.5 -3.5" width="2.4" height="1.2" color="#FFC107" 
+    text="value: VISION\nDISABILITIES; align: center; color: #000000; width: 4.5; wrapCount: 15">
   </a-plane>
   
-  <a-plane id="resetButton" class="clickable" position="5.7 2.8 -3.5" width="1.8" height="0.7" color="#A5D6A7" 
-    text="value: RESET\nNORMAL; align: center; color: #000000; width: 3.8; wrapCount: 15">
+  <a-plane id="resetButton" class="clickable" position="4.8 3.5 -3.5" width="2.4" height="1.2" color="#A5D6A7" 
+    text="value: RESET\nNORMAL; align: center; color: #000000; width: 4.5; wrapCount: 15">
   </a-plane>
 
   <!-- ANIMAL DROPDOWN -->
   <a-entity id="animalOptions" visible="false">
-    <a-plane class="clickable animal-option" position="1.5 2 -2.5" width="1.7" height="0.65" color="#FFFFFF" 
-      text="value: COW; align: center; color: #000000; width: 3.8" data-vision="Cow">
+    <a-plane class="clickable animal-option" position="0 2.6 -2.5" width="2.3" height="0.8" color="#FFFFFF" 
+      text="value: COW; align: center; color: #000000; width: 4.5" data-vision="Cow">
     </a-plane>
     
-    <a-plane class="clickable animal-option" position="1.5 1.2 -2.5" width="1.7" height="0.65" color="#FFFFFF" 
-      text="value: HORSE; align: center; color: #000000; width: 3.8" data-vision="Horse">
+    <a-plane class="clickable animal-option" position="0 1.7 -2.5" width="2.3" height="0.8" color="#FFFFFF" 
+      text="value: HORSE; align: center; color: #000000; width: 4.5" data-vision="Horse">
     </a-plane>
     
-    <a-plane class="clickable animal-option" position="1.5 0.4 -2.5" width="1.7" height="0.65" color="#FFFFFF" 
-      text="value: FISH; align: center; color: #000000; width: 3.8" data-vision="Sparrow">
+    <a-plane class="clickable animal-option" position="0 0.8 -2.5" width="2.3" height="0.8" color="#FFFFFF" 
+      text="value: FISH; align: center; color: #000000; width: 4.5" data-vision="Sparrow">
     </a-plane>
   </a-entity>
 
   <!-- DISABILITY DROPDOWN -->
   <a-entity id="disabilityOptions" visible="false">
-    <a-plane class="clickable disability-option" position="3.6 2 -2.5" width="1.7" height="0.65" color="#FFFFFF" 
-      text="value: PROTANOPIA; align: center; color: #000000; width: 3.8" data-vision="Protanopia">
+    <a-plane class="clickable disability-option" position="2.4 2.6 -2.5" width="2.3" height="0.8" color="#FFFFFF" 
+      text="value: PROTANOPIA; align: center; color: #000000; width: 4.5" data-vision="Protanopia">
     </a-plane>
     
-    <a-plane class="clickable disability-option" position="3.6 1.2 -2.5" width="1.7" height="0.65" color="#FFFFFF" 
-      text="value: MACULAR\nDEGENERATION; align: center; color: #000000; width: 3.8; wrapCount: 15" data-vision="Macular">
+    <a-plane class="clickable disability-option" position="2.4 1.7 -2.5" width="2.3" height="0.8" color="#FFFFFF" 
+      text="value: MACULAR\nDEGENERATION; align: center; color: #000000; width: 4.5; wrapCount: 15" data-vision="Macular">
     </a-plane>
     
-    <a-plane class="clickable disability-option" position="3.6 0.4 -2.5" width="1.7" height="0.65" color="#FFFFFF" 
-      text="value: TUNNEL VISION; align: center; color: #000000; width: 3.8" data-vision="Tunnel">
+    <a-plane class="clickable disability-option" position="2.4 0.8 -2.5" width="2.3" height="0.8" color="#FFFFFF" 
+      text="value: TUNNEL VISION; align: center; color: #000000; width: 4.5" data-vision="Tunnel">
     </a-plane>
   </a-entity>
 
@@ -151,30 +151,52 @@ document.addEventListener('DOMContentLoaded', function() {
     setupVolumeButtonReset();
   });
 
-  // VOLUME BUTTON RESET ΓΙΑ MOBILE
+  // VOLUME BUTTON RESET ΓΙΑ MOBILE + SCREEN TAP
   function setupVolumeButtonReset() {
+    // Μέθοδος 1: Keyboard events (iOS και μερικά Android)
     document.addEventListener('keydown', function(e) {
       // Volume buttons keycodes
       if (e.key === 'AudioVolumeUp' || e.key === 'AudioVolumeDown' || 
           e.key === 'VolumeUp' || e.key === 'VolumeDown' ||
-          e.keyCode === 175 || e.keyCode === 174) {
+          e.keyCode === 175 || e.keyCode === 174 ||
+          e.which === 175 || e.which === 174) {
         e.preventDefault();
         e.stopPropagation();
         resetVision();
-        console.log('Reset triggered by volume button');
+        console.log('✓ Reset: volume button');
         return false;
       }
     }, true);
 
-    window.addEventListener('volumeupbutton', function() {
+    // Μέθοδος 2: Cordova/PhoneGap events
+    window.addEventListener('volumeupbutton', function(e) {
+      e.preventDefault();
       resetVision();
-      console.log('Reset: volume up');
+      console.log('✓ Reset: volume up');
     }, false);
 
-    window.addEventListener('volumedownbutton', function() {
+    window.addEventListener('volumedownbutton', function(e) {
+      e.preventDefault();
       resetVision();
-      console.log('Reset: volume down');
+      console.log('✓ Reset: volume down');
     }, false);
+
+    // Μέθοδος 3: Double tap στην οθόνη για reset (εναλλακτική για Android)
+    let lastTap = 0;
+    document.addEventListener('touchend', function(e) {
+      const currentTime = new Date().getTime();
+      const tapLength = currentTime - lastTap;
+      
+      if (tapLength < 300 && tapLength > 0) {
+        // Double tap detected
+        e.preventDefault();
+        resetVision();
+        console.log('✓ Reset: double tap');
+      }
+      lastTap = currentTime;
+    });
+
+    console.log('✓ Reset methods: Volume buttons OR Double-tap screen');
   }
 
   function hideInfoOnVREnter() {

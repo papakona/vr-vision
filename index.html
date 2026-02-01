@@ -35,37 +35,6 @@
     #controls-info p {
       margin: 3px 0;
     }
-    
-    /* Reset button overlay για mobile */
-    #mobile-reset-btn {
-      position: fixed;
-      bottom: 80px;
-      right: 20px;
-      width: 60px;
-      height: 60px;
-      background: #4CAF50;
-      border: 3px solid white;
-      border-radius: 50%;
-      color: white;
-      font-size: 24px;
-      font-weight: bold;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      z-index: 2000;
-      cursor: pointer;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.3);
-      font-family: Arial, sans-serif;
-    }
-    #mobile-reset-btn:active {
-      background: #45a049;
-      transform: scale(0.95);
-    }
-    
-    /* Hide info when in VR mode */
-    .a-enter-vr .a-orientation-modal {
-      display: none;
-    }
   </style>
 </head>
 
@@ -74,11 +43,8 @@
 <div id="controls-info">
   <h3>🔍 Vision Simulator (Mobile/VR)</h3>
   <p>Look at buttons for 1 second to select</p>
-  <p>Green button (→) resets to normal vision</p>
+  <p>Press Volume Up/Down to reset to normal vision</p>
 </div>
-
-<!-- Floating reset button για mobile -->
-<button id="mobile-reset-btn" title="Reset to Normal Vision">R</button>
 
 <a-scene background="color: #ECECEC" vr-mode-ui="enabled: true">
 
@@ -109,7 +75,7 @@
       <!-- Tunnel Vision -->
       <a-ring id="tunnelVision" visible="false" position="0 0 -0.1" radius-inner="0.05" radius-outer="1.0" color="#000000" opacity="0.98" class="non-interactive"></a-ring>
       
-      <!-- Horse Blind Spot - ΛΕΠΤΟΤΕΡΟ ΚΑΙ ΠΙΟ ΚΑΤΩ -->
+      <!-- Horse Blind Spot -->
       <a-plane id="horseBlindSpot" visible="false" position="0 -0.08 -0.12" width="0.09" height="0.6" material="shader: flat; color: #000000; opacity: 0.98" class="non-interactive"></a-plane>
       
       <!-- Macular Degeneration -->
@@ -121,46 +87,46 @@
   <!-- CLASSROOM MODEL -->
   <a-entity id="classroom" gltf-model="classroom.glb" position="0 -1.2 0" scale="0.5 0.5 0.5"></a-entity>
 
-  <!-- MAIN MENU - ΣΕ ΜΙΑ ΓΡΑΜΜΗ, ΠΙΟ ΠΑΝΩ ΚΑΙ ΔΕΞΙΑ -->
-  <a-plane id="animalMenu" class="clickable" position="0 2.2 -3" width="2" height="0.8" color="#CE93D8" 
-    text="value: ANIMAL\nVISION; align: center; color: #000000; width: 4; wrapCount: 15">
+  <!-- MAIN MENU - ΤΑ 3 ΣΕ ΜΙΑ ΟΡΙΖΟΝΤΙΑ ΓΡΑΜΜΗ, ΠΑΝΩ ΚΑΙ ΔΕΞΙΑ -->
+  <a-plane id="animalMenu" class="clickable" position="1.5 2.8 -3.5" width="1.8" height="0.7" color="#CE93D8" 
+    text="value: ANIMAL\nVISION; align: center; color: #000000; width: 3.8; wrapCount: 15">
   </a-plane>
   
-  <a-plane id="disabilityMenu" class="clickable" position="2.3 2.2 -3" width="2" height="0.8" color="#FFC107" 
-    text="value: VISION\nDISABILITIES; align: center; color: #000000; width: 4; wrapCount: 15">
+  <a-plane id="disabilityMenu" class="clickable" position="3.6 2.8 -3.5" width="1.8" height="0.7" color="#FFC107" 
+    text="value: VISION\nDISABILITIES; align: center; color: #000000; width: 3.8; wrapCount: 15">
   </a-plane>
   
-  <a-plane id="resetButton" class="clickable" position="4.6 2.2 -3" width="2" height="0.8" color="#A5D6A7" 
-    text="value: RESET\nNORMAL; align: center; color: #000000; width: 4; wrapCount: 15">
+  <a-plane id="resetButton" class="clickable" position="5.7 2.8 -3.5" width="1.8" height="0.7" color="#A5D6A7" 
+    text="value: RESET\nNORMAL; align: center; color: #000000; width: 3.8; wrapCount: 15">
   </a-plane>
 
-  <!-- ANIMAL DROPDOWN - ΠΙΟ ΚΟΝΤΑ ΣΤΗΝ ΚΑΜΕΡΑ ΓΙΑ ΝΑ ΜΗΝ "ΜΠΑΙΝΟΥΝ" ΣΤΟ ΠΑΤΩΜΑ -->
+  <!-- ANIMAL DROPDOWN -->
   <a-entity id="animalOptions" visible="false">
-    <a-plane class="clickable animal-option" position="0 1.3 -2.5" width="1.9" height="0.7" color="#FFFFFF" 
-      text="value: COW; align: center; color: #000000; width: 4" data-vision="Cow">
+    <a-plane class="clickable animal-option" position="1.5 2 -2.5" width="1.7" height="0.65" color="#FFFFFF" 
+      text="value: COW; align: center; color: #000000; width: 3.8" data-vision="Cow">
     </a-plane>
     
-    <a-plane class="clickable animal-option" position="0 0.5 -2.5" width="1.9" height="0.7" color="#FFFFFF" 
-      text="value: HORSE; align: center; color: #000000; width: 4" data-vision="Horse">
+    <a-plane class="clickable animal-option" position="1.5 1.2 -2.5" width="1.7" height="0.65" color="#FFFFFF" 
+      text="value: HORSE; align: center; color: #000000; width: 3.8" data-vision="Horse">
     </a-plane>
     
-    <a-plane class="clickable animal-option" position="0 -0.3 -2.5" width="1.9" height="0.7" color="#FFFFFF" 
-      text="value: FISH; align: center; color: #000000; width: 4" data-vision="Sparrow">
+    <a-plane class="clickable animal-option" position="1.5 0.4 -2.5" width="1.7" height="0.65" color="#FFFFFF" 
+      text="value: FISH; align: center; color: #000000; width: 3.8" data-vision="Sparrow">
     </a-plane>
   </a-entity>
 
-  <!-- DISABILITY DROPDOWN - ΠΙΟ ΚΟΝΤΑ ΣΤΗΝ ΚΑΜΕΡΑ -->
+  <!-- DISABILITY DROPDOWN -->
   <a-entity id="disabilityOptions" visible="false">
-    <a-plane class="clickable disability-option" position="2.3 1.3 -2.5" width="1.9" height="0.7" color="#FFFFFF" 
-      text="value: PROTANOPIA; align: center; color: #000000; width: 4" data-vision="Protanopia">
+    <a-plane class="clickable disability-option" position="3.6 2 -2.5" width="1.7" height="0.65" color="#FFFFFF" 
+      text="value: PROTANOPIA; align: center; color: #000000; width: 3.8" data-vision="Protanopia">
     </a-plane>
     
-    <a-plane class="clickable disability-option" position="2.3 0.5 -2.5" width="1.9" height="0.7" color="#FFFFFF" 
-      text="value: MACULAR\nDEGENERATION; align: center; color: #000000; width: 4; wrapCount: 15" data-vision="Macular">
+    <a-plane class="clickable disability-option" position="3.6 1.2 -2.5" width="1.7" height="0.65" color="#FFFFFF" 
+      text="value: MACULAR\nDEGENERATION; align: center; color: #000000; width: 3.8; wrapCount: 15" data-vision="Macular">
     </a-plane>
     
-    <a-plane class="clickable disability-option" position="2.3 -0.3 -2.5" width="1.9" height="0.7" color="#FFFFFF" 
-      text="value: TUNNEL VISION; align: center; color: #000000; width: 4" data-vision="Tunnel">
+    <a-plane class="clickable disability-option" position="3.6 0.4 -2.5" width="1.7" height="0.65" color="#FFFFFF" 
+      text="value: TUNNEL VISION; align: center; color: #000000; width: 3.8" data-vision="Tunnel">
     </a-plane>
   </a-entity>
 
@@ -172,7 +138,6 @@ document.addEventListener('DOMContentLoaded', function() {
   let originalCameraFOV = 80;
   let currentVisionActive = null;
   
-  // Μεταβλητές ελέγχου μενού
   let menuIsOpen = false;
   let lastMenuOpened = null;
 
@@ -183,29 +148,42 @@ document.addEventListener('DOMContentLoaded', function() {
     originalCameraFOV = camera.getAttribute('camera').fov || 80;
     setupMenuHandlers();
     hideInfoOnVREnter();
-    setupMobileResetButton();
+    setupVolumeButtonReset();
   });
 
-  // Setup mobile reset button
-  function setupMobileResetButton() {
-    const resetBtn = document.getElementById('mobile-reset-btn');
-    resetBtn.addEventListener('click', function(e) {
-      e.preventDefault();
+  // VOLUME BUTTON RESET ΓΙΑ MOBILE
+  function setupVolumeButtonReset() {
+    document.addEventListener('keydown', function(e) {
+      // Volume buttons keycodes
+      if (e.key === 'AudioVolumeUp' || e.key === 'AudioVolumeDown' || 
+          e.key === 'VolumeUp' || e.key === 'VolumeDown' ||
+          e.keyCode === 175 || e.keyCode === 174) {
+        e.preventDefault();
+        e.stopPropagation();
+        resetVision();
+        console.log('Reset triggered by volume button');
+        return false;
+      }
+    }, true);
+
+    window.addEventListener('volumeupbutton', function() {
       resetVision();
-      console.log('Reset triggered by mobile button');
-    });
+      console.log('Reset: volume up');
+    }, false);
+
+    window.addEventListener('volumedownbutton', function() {
+      resetVision();
+      console.log('Reset: volume down');
+    }, false);
   }
 
-  // Κρύβουμε το info panel και το mobile button όταν μπαίνουμε σε VR mode
   function hideInfoOnVREnter() {
     const sceneEl = document.querySelector('a-scene');
     sceneEl.addEventListener('enter-vr', function() {
       document.getElementById('controls-info').style.display = 'none';
-      document.getElementById('mobile-reset-btn').style.display = 'none';
     });
     sceneEl.addEventListener('exit-vr', function() {
       document.getElementById('controls-info').style.display = 'block';
-      document.getElementById('mobile-reset-btn').style.display = 'flex';
     });
   }
 
@@ -226,7 +204,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     materialsStored = true;
-    console.log('✓ Stored materials for', originalMaterials.length, 'meshes');
+    console.log('✓ Materials stored:', originalMaterials.length);
   }
 
   function resetVision() {
@@ -253,67 +231,83 @@ document.addEventListener('DOMContentLoaded', function() {
     lastMenuOpened = null;
     currentVisionActive = null;
     
-    console.log('✓ Vision reset to normal');
+    console.log('✓ Reset to normal');
   }
 
-  // VISION FUNCTIONS
+  // COW VISION - ΚΙΤΡΙΝΑ + ZOOM ΟΠΩΣ ΣΤΟ DESKTOP
   function applyCowVision() {
     if (currentVisionActive === 'Cow') return;
     resetVision(); 
-    currentVisionActive='Cow';
+    currentVisionActive = 'Cow';
     
     if (!originalMaterials.length) { 
       setTimeout(applyCowVision, 1000); 
       return; 
     }
     
-    // ΠΙΟΕΝΤΟΝΟ FOV ΚΑΙ ΚΙΤΡΙΝΗ ΑΠΟΧΡΩΣΗ
+    // ZOOM - Στενό FOV για να φαίνονται τα αντικείμενα πιο κοντά
     const camera = document.querySelector('#mainCamera'); 
-    camera.setAttribute('camera', 'fov', 50); // Πιο στενό FOV για περισσότερο zoom
+    camera.setAttribute('camera', 'fov', 40);
+    
+    console.log('Applying Cow vision:', originalMaterials.length, 'materials');
     
     originalMaterials.forEach(item => { 
-      if (item.color) { 
+      if (item.color && item.mesh && item.mesh.material) { 
         const c = item.color; 
         const lum = c.r * 0.299 + c.g * 0.587 + c.b * 0.114;
         
-        // ΠΟΛΥ ΠΙΟ ΕΝΤΟΝΑ ΚΙΤΡΙΝΑ ΧΡΩΜΑΤΑ
-        const yellowR = lum * 0.7 + 0.3;  // Περισσότερο κόκκινο
-        const yellowG = lum * 0.65 + 0.35; // Περισσότερο πράσινο
-        const yellowB = lum * 0.15;        // Πολύ λίγο μπλε
+        // ΕΝΤΟΝΑ ΚΙΤΡΙΝΑ (R+G υψηλά, B χαμηλό)
+        const newR = Math.min(1.0, lum * 0.5 + 0.5);
+        const newG = Math.min(1.0, lum * 0.5 + 0.45);
+        const newB = lum * 0.2;
         
-        item.mesh.material.color.setRGB(yellowR, yellowG, yellowB);
+        item.mesh.material.color.setRGB(newR, newG, newB);
         item.mesh.material.needsUpdate = true;
       } 
     });
     
-    console.log('✓ Cow vision applied (enhanced)');
+    console.log('✓ Cow vision: yellow + zoom');
   }
 
   function applyHorseVision() {
     if (currentVisionActive === 'Horse') return;
-    resetVision(); currentVisionActive='Horse';
+    resetVision(); 
+    currentVisionActive='Horse';
     if (!originalMaterials.length) { setTimeout(applyHorseVision,1000); return; }
+    
     document.querySelector('#horseBlindSpot').setAttribute('visible', true);
-    originalMaterials.forEach(item=>{ if(item.color){ const c=item.color; item.mesh.material.color.copy(new THREE.Color(c.r*0.4+c.g*0.3, c.g*0.95, c.b*1.1)); } });
-    console.log('✓ Horse vision applied');
+    
+    originalMaterials.forEach(item => { 
+      if(item.color && item.mesh && item.mesh.material) { 
+        const c = item.color; 
+        item.mesh.material.color.setRGB(c.r*0.4+c.g*0.3, c.g*0.95, c.b*1.1);
+        item.mesh.material.needsUpdate = true;
+      } 
+    });
+    
+    console.log('✓ Horse vision');
   }
 
   function applySparrowVision() {
     if (currentVisionActive === 'Sparrow') return;
-    resetVision(); currentVisionActive='Sparrow';
+    resetVision(); 
+    currentVisionActive='Sparrow';
     if (!originalMaterials.length) { setTimeout(applySparrowVision,1000); return; }
+    
     document.querySelector('#mainCamera').setAttribute('camera','fov',100);
-    originalMaterials.forEach(item=>{
+    
+    originalMaterials.forEach(item => {
       if(item.color && item.mesh && item.mesh.material){
-        const c=item.color;
-        const newR=Math.min(1.0,c.r*0.8+0.3);
-        const newG=c.g*0.4+0.2;
-        const newB=Math.min(1.0,c.b*0.7+0.4);
-        item.mesh.material.color.setRGB(newR,newG,newB);
-        item.mesh.material.needsUpdate=true;
+        const c = item.color;
+        const newR = Math.min(1.0, c.r*0.8+0.3);
+        const newG = c.g*0.4+0.2;
+        const newB = Math.min(1.0, c.b*0.7+0.4);
+        item.mesh.material.color.setRGB(newR, newG, newB);
+        item.mesh.material.needsUpdate = true;
       }
     });
-    console.log('✓ Fish vision applied');
+    
+    console.log('✓ Fish vision');
   }
 
   function applyProtanopia() {
@@ -322,12 +316,11 @@ document.addEventListener('DOMContentLoaded', function() {
     currentVisionActive = 'Protanopia';
 
     if (originalMaterials.length === 0) {
-      console.log('Waiting for materials to load...');
       setTimeout(applyProtanopia, 1000);
       return;
     }
 
-    console.log('Applying Protanopia shader to', originalMaterials.length, 'materials');
+    console.log('Applying Protanopia:', originalMaterials.length, 'materials');
 
     originalMaterials.forEach(item => {
       if (!item.mesh || !item.mesh.material) return;
@@ -356,13 +349,13 @@ document.addEventListener('DOMContentLoaded', function() {
             float epsilon = 0.02;
 
             if(abs(r - g) < epsilon && abs(r - b) < epsilon && abs(g - b) < epsilon){
-              // gray, do nothing
+              // gray
             }
             else if(abs(r - g) < epsilon && r > b + 0.05){
-              // yellow, do nothing
+              // yellow
             }
             else if (b > r && b > g){
-              // blue, do nothing
+              // blue
             }
             else if (r > g && r > b){
               color.r = 0.45;
@@ -384,7 +377,7 @@ document.addEventListener('DOMContentLoaded', function() {
       item.mesh.material.needsUpdate = true;
     });
 
-    console.log('✓ Protanopia applied');
+    console.log('✓ Protanopia');
   }
 
   function applyMacularDegeneration(){ 
@@ -393,7 +386,7 @@ document.addEventListener('DOMContentLoaded', function() {
     currentVisionActive='Macular'; 
     document.querySelector('#macularDarkSpot').setAttribute('visible',true); 
     document.querySelector('#macularBlurRing').setAttribute('visible',true);
-    console.log('✓ Macular degeneration applied');
+    console.log('✓ Macular degeneration');
   }
   
   function applyTunnelVision(){ 
@@ -401,10 +394,9 @@ document.addEventListener('DOMContentLoaded', function() {
     resetVision(); 
     currentVisionActive='Tunnel'; 
     document.querySelector('#tunnelVision').setAttribute('visible',true);
-    console.log('✓ Tunnel vision applied');
+    console.log('✓ Tunnel vision');
   }
 
-  // MENU HANDLERS
   function toggleAnimalMenu() {
     const animal = document.querySelector('#animalOptions');
     const disability = document.querySelector('#disabilityOptions');
@@ -414,15 +406,8 @@ document.addEventListener('DOMContentLoaded', function() {
     const isCurrentlyVisible = animal.getAttribute('visible');
     animal.setAttribute('visible', !isCurrentlyVisible);
     
-    if (!isCurrentlyVisible) {
-      menuIsOpen = true;
-      lastMenuOpened = 'animal';
-      console.log('Animal menu opened');
-    } else {
-      menuIsOpen = false;
-      lastMenuOpened = null;
-      console.log('Animal menu closed');
-    }
+    menuIsOpen = !isCurrentlyVisible;
+    lastMenuOpened = menuIsOpen ? 'animal' : null;
   }
   
   function toggleDisabilityMenu() {
@@ -434,33 +419,20 @@ document.addEventListener('DOMContentLoaded', function() {
     const isCurrentlyVisible = disability.getAttribute('visible');
     disability.setAttribute('visible', !isCurrentlyVisible);
     
-    if (!isCurrentlyVisible) {
-      menuIsOpen = true;
-      lastMenuOpened = 'disability';
-      console.log('Disability menu opened');
-    } else {
-      menuIsOpen = false;
-      lastMenuOpened = null;
-      console.log('Disability menu closed');
-    }
+    menuIsOpen = !isCurrentlyVisible;
+    lastMenuOpened = menuIsOpen ? 'disability' : null;
   }
 
   function setupMenuHandlers(){
-    // Main menu buttons - χρησιμοποιούμε 'click' event που δουλεύει και με gaze
     document.querySelector('#animalMenu').addEventListener('click', toggleAnimalMenu);
     document.querySelector('#disabilityMenu').addEventListener('click', toggleDisabilityMenu);
     document.querySelector('#resetButton').addEventListener('click', resetVision);
 
-    // ANIMAL OPTIONS
     document.querySelectorAll('.animal-option').forEach(option => {
       option.addEventListener('click', function() {
-        if (!menuIsOpen || lastMenuOpened !== 'animal') {
-          console.log('Animal menu is not open, ignoring click');
-          return;
-        }
+        if (!menuIsOpen || lastMenuOpened !== 'animal') return;
         
         const vision = this.getAttribute('data-vision');
-        console.log('Applying vision:', vision);
         
         document.querySelector('#animalOptions').setAttribute('visible', false);
         menuIsOpen = false;
@@ -473,16 +445,11 @@ document.addEventListener('DOMContentLoaded', function() {
       });
     });
 
-    // DISABILITY OPTIONS
     document.querySelectorAll('.disability-option').forEach(option => {
       option.addEventListener('click', function() {
-        if (!menuIsOpen || lastMenuOpened !== 'disability') {
-          console.log('Disability menu is not open, ignoring click');
-          return;
-        }
+        if (!menuIsOpen || lastMenuOpened !== 'disability') return;
         
         const vision = this.getAttribute('data-vision');
-        console.log('Applying vision:', vision);
         
         document.querySelector('#disabilityOptions').setAttribute('visible', false);
         menuIsOpen = false;
@@ -496,13 +463,12 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   }
 
-  // Keyboard controls για testing
+  // Keyboard για testing
   document.addEventListener('keydown', function(e) { 
     if (e.key === 'r' || e.key === 'R' || e.key === 'Escape' || e.key === ' ') {
       e.preventDefault();
       e.stopPropagation();
       resetVision();
-      console.log('Reset triggered by keyboard:', e.key);
     }
   }, true);
 
